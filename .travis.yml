@@ -1,8 +1,13 @@
 language: objective-c
 script: xctool -scheme ClassroomController -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+before_script:
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Travis_Profile.mobileprovision.enc -d -a -out scripts/profile/Travis_Profile.mobileprovision
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
+  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
 env:
   global:
-    secure: dHOckw2B1JcAHw+Bty+pdwXHTEocZfxj/PD95s1EdlPRxbf34WOJfpJ5PQyca5yxTVsNLaJOLMHZAButaGcxE3env1APACjtY67rvwrAvXjmsuySwJJ2aAh5AhUxpAjANZKRwVWSo9+5b0mYvRqNLFuakkgefS2yH2827bNYdrQ=
-    APP_NAME="ClassroomController"
-    DEVELOPER_NAME="iPhone Distribution: Joshua Rappeneker (6BMWGWNHT7)"
-    PROFILE_NAME="Travis_Profile"
+    - APP_NAME="ClassroomController"
+    - DEVELOPER_NAME="iPhone Distribution: Joshua Rappeneker (6BMWGWNHT7)"
+    - PROFILE_NAME="Travis_Profile"
+    - secure: dHOckw2B1JcAHw+Bty+pdwXHTEocZfxj/PD95s1EdlPRxbf34WOJfpJ5PQyca5yxTVsNLaJOLMHZAButaGcxE3env1APACjtY67rvwrAvXjmsuySwJJ2aAh5AhUxpAjANZKRwVWSo9+5b0mYvRqNLFuakkgefS2yH2827bNYdrQ=
+    - secure: V12/b/NvWVTDw3XW4jObbY9k7rmjJ9sxge62Qd4MtL0OTMMh/obwdHdn91yqX2lDAkOan7qXVSwC1ONj9AAZNaDmycNv+DPERc2jUvAW3GJzppEk57X+NJ6dizCJLWUlYljIquWRM4y3NGITkvZhztc0gOp1j50sHi4PSWaYJeg=

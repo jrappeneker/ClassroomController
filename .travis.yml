@@ -1,4 +1,4 @@
-42ebfdd5-ede8-4a02-bfdf-53715e006addanguage: objective-c
+language: objective-c
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Travis_Profile.mobileprovision.enc
   -d -a -out scripts/profile/Travis_Profile.mobileprovision

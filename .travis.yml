@@ -1,2 +1,8 @@
 language: objective-c
 script: xctool -scheme ClassroomController -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+env:
+  global:
+    secure: dHOckw2B1JcAHw+Bty+pdwXHTEocZfxj/PD95s1EdlPRxbf34WOJfpJ5PQyca5yxTVsNLaJOLMHZAButaGcxE3env1APACjtY67rvwrAvXjmsuySwJJ2aAh5AhUxpAjANZKRwVWSo9+5b0mYvRqNLFuakkgefS2yH2827bNYdrQ=
+    APP_NAME="ClassroomController"
+    DEVELOPER_NAME="iPhone Distribution: Joshua Rappeneker (6BMWGWNHT7)"
+    PROFILE_NAME="Travis_Profile"

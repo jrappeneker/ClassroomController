@@ -1,13 +1,14 @@
 #!/bin/sh
+KEY_CHAIN=ios-build.keychain
 
 # Create a custom keychain
-security create-keychain -p travis ios-build.keychain
+security create-keychain -p travis $KEY_CHAIN
 
 # Make the custom keychain default, so xcodebuild will use it for signing
-security default-keychain -s ios-build.keychain
+security default-keychain -s $KEY_CHAIN
 
 # Unlock the keychain
-security unlock-keychain -p travis ios-build.keychain
+security unlock-keychain -p travis $KEY_CHAIN
 
 # Set keychain timeout to 1 hour for long builds
 # see http://www.egeek.me/2013/02/23/jenkins-and-xcode-user-interaction-is-not-allowed/

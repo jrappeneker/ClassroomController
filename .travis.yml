@@ -1,20 +1,25 @@
 42ebfdd5-ede8-4a02-bfdf-53715e006addanguage: objective-c
 before_script:
-  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Travis_Profile.mobileprovision.enc -d -a -out scripts/profile/Travis_Profile.mobileprovision
-  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
-  - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
-  - ./scripts/add-key.sh
-  - ./scripts/update-bundle.sh
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/Travis_Profile.mobileprovision.enc
+  -d -a -out scripts/profile/Travis_Profile.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
+  -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
+  -out scripts/certs/dist.p12
+- ./scripts/add-key.sh
+- ./scripts/update-bundle.sh
 script:
-  - xctool -scheme ClassroomController -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO TESTFLIGHT_APP_TOKEN=$TESTFLIGHT_APP_TOKEN
+- xctool -scheme ClassroomController -sdk iphoneos -configuration Release OBJROOT=$PWD/build
+  SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO TESTFLIGHT_APP_TOKEN=$TESTFLIGHT_APP_TOKEN
 after_script:
-  - ./scripts/remove-key.sh
+- ./scripts/remove-key.sh
 after_success:
-  - ./scripts/sign-and-upload.sh
+- ./scripts/sign-and-upload.sh
 env:
   global:
-    - APP_NAME="ClassroomController"
-    - DEVELOPER_NAME="iPhone Distribution: Joshua Rappeneker (6BMWGWNHT7)"
-    - PROFILE_NAME="Travis_Profile"
-    - secure: dHOckw2B1JcAHw+Bty+pdwXHTEocZfxj/PD95s1EdlPRxbf34WOJfpJ5PQyca5yxTVsNLaJOLMHZAButaGcxE3env1APACjtY67rvwrAvXjmsuySwJJ2aAh5AhUxpAjANZKRwVWSo9+5b0mYvRqNLFuakkgefS2yH2827bNYdrQ=
-    - secure: V12/b/NvWVTDw3XW4jObbY9k7rmjJ9sxge62Qd4MtL0OTMMh/obwdHdn91yqX2lDAkOan7qXVSwC1ONj9AAZNaDmycNv+DPERc2jUvAW3GJzppEk57X+NJ6dizCJLWUlYljIquWRM4y3NGITkvZhztc0gOp1j50sHi4PSWaYJeg=
+  - APP_NAME="ClassroomController"
+  - DEVELOPER_NAME="iPhone Distribution: Joshua Rappeneker (6BMWGWNHT7)"
+  - PROFILE_NAME="Travis_Profile"
+  - secure: dHOckw2B1JcAHw+Bty+pdwXHTEocZfxj/PD95s1EdlPRxbf34WOJfpJ5PQyca5yxTVsNLaJOLMHZAButaGcxE3env1APACjtY67rvwrAvXjmsuySwJJ2aAh5AhUxpAjANZKRwVWSo9+5b0mYvRqNLFuakkgefS2yH2827bNYdrQ=
+  - secure: V12/b/NvWVTDw3XW4jObbY9k7rmjJ9sxge62Qd4MtL0OTMMh/obwdHdn91yqX2lDAkOan7qXVSwC1ONj9AAZNaDmycNv+DPERc2jUvAW3GJzppEk57X+NJ6dizCJLWUlYljIquWRM4y3NGITkvZhztc0gOp1j50sHi4PSWaYJeg=
+  - secure: g1v+3l1x04ryEWfpFp4j/pGGS0xfxjmSQsE70mRGmsn34ppqCzyLuLh9WpoEcRJzgZuV0qBeCvei6jkpfXH8D22WTF0Os3m6G8RqsFXLTldS1ZSi5ja8PdCuGXilhxpsT4/DgA5egpCNNt5YXZMfq1eSu6m5Dilkkd8Q2iSkIK4=

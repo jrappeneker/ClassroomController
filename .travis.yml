@@ -6,7 +6,7 @@ before_script:
 - ./scripts/add-key.sh
 - ./scripts/update-bundle.sh
 script:
-- xctool -scheme ClassroomController -sdk iphoneos -configuration Release OBJROOT=$PWD/build
+  - xctool -scheme ClassroomController -workspace ClassroomController.xcworkspace -sdk iphoneos -configuration Release OBJROOT=$PWD/build
   SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO TESTFLIGHT_APP_TOKEN=$TESTFLIGHT_APP_TOKEN
 after_script:
 - ./scripts/remove-key.sh

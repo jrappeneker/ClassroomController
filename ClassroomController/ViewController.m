@@ -17,7 +17,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor blueColor];
+    self.view.backgroundColor = [UIColor redColor];
+UILabel *label = [UILabel new];
+label.text = @"Test Label";
+[self.view addSubview:label];
+ 
+UIView *superview = self.view;
+[label mas_makeConstraints:^(MASConstraintMaker *make) {
+ make.top.equalTo(@100);
+ make.centerX.equalTo(superview);
+}];
 }
 
 - (void)didReceiveMemoryWarning {

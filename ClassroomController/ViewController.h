@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
+#define MAS_SHORTHAND
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
 
 @interface ViewController : UIViewController
 
